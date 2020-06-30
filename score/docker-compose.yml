@@ -1,0 +1,41 @@
+version: "3.1"
+
+services:
+  file:
+    image: httpd:latest
+    volumes:
+      - ./public:/usr/local/apache2/htdocs/
+    ports:
+      - 81:80
+  visual:
+    build: ./visual
+    ports:
+      - 80:80
+  api:
+    build: ./api
+    environment:
+      FLAG_SECRET_KEY: "aaa"
+      API_SECRET_KEY: "bbb"
+      POINT_GET_FLAG: 10
+      POINT_LOST_FLAG: 5
+      TIME_START: 1584676800
+      TIME_END: 1600000000
+      TIME_EPOCH: 2
+      MYSQL_USER: "db-user"
+      MYSQL_PASSWORD: "ccc"
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_USER: "db-user"
+      MYSQL_PASSWORD: "ccc"
+      MYSQL_DATABASE: "database"
+      MYSQL_ROOT_PASSWORD: "ddd"
+    volumes:
+      - ./mysql/init:/docker-entrypoint-initdb.d
+      - ./mysql/data:/var/lib/mysql
+    ports:
+      - 3306:3306

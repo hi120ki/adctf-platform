@@ -1,0 +1,35 @@
+{% extends "_base.tmpl" %}
+
+{% block content %}
+
+{% include "components/navbar.tmpl" %}
+
+<section class="hero is-fullheight">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <div class="column is-4 is-offset-4">
+        <div class="box">
+          <form action="/register" method="POST">
+            <div class="field">
+              <div class="control">
+                <input class="input is-large" type="username" name="username" placeholder="ユーザー名">
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <input class="input is-large" type="password" name="password" placeholder="パスワード">
+              </div>
+            </div>
+            <button class="button is-block is-info is-large is-fullwidth" type="submit" value="登録">登録</button>
+          </form>
+          {% if fail == 1 %}
+          <button class="button is-block is-danger is-fullwidth mt-2">すでにユーザーが存在します</button>
+          {% endif %}
+        </div>
+      </div>
+      <a href="/login" class="mt-5">ログイン</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

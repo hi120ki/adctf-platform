@@ -1,0 +1,38 @@
+<nav class="navbar is-info" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <h1 class="navbar-item is-size-5-touch is-size-4-desktop has-text-weight-semibold">Flask Memo</h1>
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+      data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div id="navbarBasicExample" class="navbar-menu">
+    {% if session["login"] %}
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <p>ユーザー：{{username}}</p>
+      </div>
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-primary" href='/logout'>ログアウト</a>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-primary" href='/login'>ログイン</a>
+        </div>
+      </div>
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-primary" href='/register'>アカウント作成</a>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</nav>

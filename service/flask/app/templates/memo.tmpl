@@ -1,0 +1,30 @@
+{% extends "_base.tmpl" %}
+
+{% block content %}
+
+{% include "components/navbar.tmpl" %}
+
+{% if message is not defined %}
+<div class="container">
+  <div class="column is-8 is-offset-2">
+    {% for m in memo %}
+    <div class="box">
+      <h2 id="memo-title" class="title is-5">{{ m.title }}</h2>
+      <p id="memo-text">{{ m.text }}</p>
+    </div>
+    {% endfor %}
+    <a href="/">Back to top</a>
+  </div>
+</div>
+{% else %}
+<div class="container">
+  <div class="column is-8 is-offset-2">
+    <div class="box">
+      <h2 id="memo-title" class="title is-5">{{ message }}</h2>
+    </div>
+    <a href="/">Back to top</a>
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}

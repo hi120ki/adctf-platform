@@ -1,0 +1,35 @@
+{% extends "_base.tmpl" %}
+
+{% block content %}
+
+{% include "components/navbar.tmpl" %}
+
+<section class="hero is-fullheight">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <div class="column is-4 is-offset-4">
+        <div class="box">
+          <form action="/login" method="POST">
+            <div class="field">
+              <div class="control">
+                <input class="input is-large" type="username" name="username" placeholder="ユーザー名">
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <input class="input is-large" type="password" name="password" placeholder="パスワード">
+              </div>
+            </div>
+            <button class="button is-block is-success is-large is-fullwidth" type="submit" value="ログイン">ログイン</button>
+          </form>
+          {% if fail == 1 %}
+          <button class="button is-block is-danger is-fullwidth mt-2">ユーザー名・パスワードが間違っています</button>
+          {% endif %}
+        </div>
+      </div>
+      <a href="/register" class="mt-5">アカウント作成</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

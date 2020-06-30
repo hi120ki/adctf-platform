@@ -1,0 +1,74 @@
+{% extends "_base.tmpl" %}
+
+{% block content %}
+
+{% include "components/navbar.tmpl" %}
+
+<div class="container">
+  <div class="column is-8 is-offset-2">
+    <div class="box">
+      <h2 class="title is-5">Add memo</h2>
+      <form action="/memo" method="POST">
+        <div class="field">
+          <label class="label">Title</label>
+          <div class="control">
+            <input class="input" type="text" name="title" placeholder="Title">
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Text</label>
+          <div class="control">
+            <input class="input" type="text" name="text" placeholder="Text">
+          </div>
+        </div>
+        <div class="field is-grouped">
+          <div class="control">
+            <input class="button" type="submit" value="add">
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="box">
+      <h2 class="title is-5">Memos</h2>
+      <table class="table is-fullwidth is-hoverable is-striped">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>user</th>
+            <th>title</th>
+            <th>link</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for m in memos %}
+          <tr id="memo">
+            <td id="memo-id">{{ m.id }}</td>
+            <td id="memo-user">{{ m.user }}</td>
+            <td id="memo-title">{{ m.title }}</td>
+            <td><a href="/memo/{{ m.id }}">link</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="box" style="display: none;">
+      <h2 class="title is-5">Users</h2>
+      <table class="table is-fullwidth is-hoverable is-striped">
+        <thead>
+          <tr>
+            <th>username</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for m in users %}
+          <tr>
+            <td>{{ m.username }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
